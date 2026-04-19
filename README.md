@@ -1,5 +1,8 @@
 # Folio — Old Books Buy, Sell & Rent Platform
 
+🌐 **Live Demo:** [https://sesd-project-nu.vercel.app](https://sesd-project-nu.vercel.app)
+🔗 **Backend API:** [https://sesd-project-bebh.onrender.com](https://sesd-project-bebh.onrender.com)
+
 A peer-to-peer marketplace where users can buy, sell, rent, or donate second-hand books. Built with Node.js, Express, MongoDB and React 18.
 
 ---
