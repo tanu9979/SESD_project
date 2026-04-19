@@ -3,7 +3,6 @@ import cors from 'cors';
 import helmet from 'helmet';
 import { general } from './middleware/rateLimiter';
 import errorHandler from './middleware/errorHandler';
-import env from './config/env';
 
 import authRoutes     from './routes/auth.routes';
 import bookRoutes     from './routes/book.routes';
@@ -21,19 +20,10 @@ import utilityRoutes  from './routes/utility.routes';
 const app = express();
 
 app.use(helmet());
-
-const allowedOrigins = [
-  env.FRONTEND_URL.replace(/\/$/, ''),
-  'http://localhost:5173',
-];
 app.use(cors({
-  origin: (origin, cb) => {
-    if (!origin || allowedOrigins.includes(origin)) return cb(null, true);
-    cb(new Error('Not allowed by CORS'));
-  },
+  origin: ['https://sesd-project-nu.vercel.app', 'http://localhost:5173'],
   credentials: true,
 }));
-
 app.use(express.json());
 app.use(general);
 
