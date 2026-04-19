@@ -21,9 +21,23 @@ import utilityRoutes  from './routes/utility.routes';
 const app = express();
 
 app.use(helmet());
-app.use(cors({ origin: env.FRONTEND_URL.replace(/\/$/, ''), credentials: true }));
+
+const allowedOrigins = [
+  env.FRONTEND_URL.replace(/\/$/, ''),
+  'http://localhost:5173',
+];
+app.use(cors({
+  origin: (origin, cb) => {
+    if (!origin || allowedOrigins.includes(origin)) return cb(null, true);
+    cb(new Error('Not allowed by CORS'));
+  },
+  credentials: true,
+}));
+
 app.use(express.json());
 app.use(general);
+
+app.get('/', (_req, res) => res.json({ status: 'ok', app: 'Folio API' }));
 
 app.use('/api/auth',      authRoutes);
 app.use('/api/books',     bookRoutes);

@@ -25,10 +25,10 @@ export const LocationProvider = ({ children }: { children: ReactNode }) => {
       const { countryCode: cc, currencyCode: cur } = JSON.parse(stored);
       setCountryCode(cc); setCurrencyCode(cur);
     } else {
-      fetch('http://ip-api.com/json/?fields=countryCode,currency')
+      fetch('https://ipapi.co/json/')
         .then(r => r.json())
         .then(d => {
-          const cc = d.countryCode || 'IN';
+          const cc = d.country_code || 'IN';
           const cur = d.currency || 'INR';
           setCountryCode(cc); setCurrencyCode(cur);
           localStorage.setItem('folio_location', JSON.stringify({ countryCode: cc, currencyCode: cur }));
