@@ -21,7 +21,7 @@ import utilityRoutes  from './routes/utility.routes';
 const app = express();
 
 app.use(helmet());
-app.use(cors({ origin: env.FRONTEND_URL, credentials: true }));
+app.use(cors({ origin: env.FRONTEND_URL.replace(/\/$/, ''), credentials: true }));
 app.use(express.json());
 app.use(general);
 
